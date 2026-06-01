@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Cleaned and renamed customer data. One record per customer."
+    columns:
+      - name: customer_id
+        description: "Primary key — surrogate from raw_customers.id"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "Customer first name"
+        tests:
+          - not_null
+      - name: last_name
+        description: "Customer last name"
+        tests:
+          - not_null
+      - name: full_name
+        description: "Concatenation of first and last name"
+        tests:
+          - not_null
+
+  - name: stg_orders
+    description: "Cleaned and renamed orders data. One record per order."
+    columns:
+      - name: order_id
+        description: "Primary key — surrogate from raw_orders.id"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key to stg_customers.customer_id"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: order_date
+        description: "Date the order was placed"
+        tests:
+          - not_null
+      - name: order_status
+        description: "Current status of the order"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+      - name: order_amount
+        description: "Order value in USD"
+        tests:
+          - not_null

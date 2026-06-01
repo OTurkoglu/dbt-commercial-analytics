@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: ecommerce
+    description: "Raw e-commerce transactional data from Jaffle Shop"
+    tables:
+      - name: raw_customers
+        description: "One record per customer. Primary source of customer identity data."
+        columns:
+          - name: id
+            description: "Unique identifier for each customer"
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            description: "Customer first name"
+            tests:
+              - not_null
+          - name: last_name
+            description: "Customer last name"
+            tests:
+              - not_null
+
+      - name: raw_orders
+        description: "One record per order. Primary source of transactional data."
+        columns:
+          - name: id
+            description: "Unique identifier for each order"
+            tests:
+              - unique
+              - not_null
+          - name: user_id
+            description: "Foreign key to raw_customers.id"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ecommerce', 'raw_customers')
+                  field: id
+          - name: order_date
+            description: "Date the order was placed"
+            tests:
+              - not_null
+          - name: status
+            description: "Order status"
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+          - name: amount
+            description: "Order amount in USD"
+            tests:
+              - not_null

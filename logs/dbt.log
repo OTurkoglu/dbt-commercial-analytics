@@ -1,0 +1,24 @@
+==================== 2026-06-01T19:05:24.957075Z | 019e8493-94d5-72f2-acf5-6bb9140f1c73 ====================
+19:05:24.958347 [info ]: dbt-core 2.0.0-alpha.1
+19:05:24.977059 [info ]:    Started resolving packages from packages.yml
+19:05:25.105929 [info ]:   Finished [  0.13s] resolving packages from packages.yml (1 items)
+19:05:25.106191 [info ]: Installing packages
+19:05:25.107332 [info ]: Installing dbt-labs/dbt_utils
+19:05:25.349093 [info ]:  Installed dbt-labs/dbt_utils: 1.3.0
+19:05:25.349135 [info ]:  Installed 1 package
+19:05:25.349204 [warn ]: [PackageVersionMismatch (dbt1080)]: Package 'dbt_utils' may not be compatible with your dbt version: Required dbt version does not match current version. Check Package Hub (https://hub.getdbt.com) for compatible versions or contact the package maintainer.
+19:05:25.349655 [info ]: Updated version available for dbt_utils@1.3.0: 1.3.3
+19:05:25.452375 [info ]: 
+==================== Execution Summary =====================
+Finished 'deps' with 1 warning [495ms]
+==================== 2026-06-01T19:06:12.412666Z | 019e8494-4e34-7603-97c2-4c003a93ed9b ====================
+19:06:12.413967 [info ]: dbt-core 2.0.0-alpha.1
+19:06:12.434038 [info ]:    Started resolving packages from packages.yml
+19:06:12.635528 [info ]:   Finished [  0.20s] resolving packages from packages.yml (1 items)
+19:06:12.635772 [info ]: Installing packages
+19:06:12.652596 [info ]: Installing dbt-labs/dbt_utils
+19:06:12.900809 [info ]:  Installed dbt-labs/dbt_utils: 1.3.3
+19:06:12.900846 [info ]:  Installed 1 package
+19:06:13.000974 [info ]: 
+==================== Execution Summary =====================
+Finished 'deps' successfully [588ms]

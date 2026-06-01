@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: customer_orders
+    description: "Final business-facing customer orders table. One record per customer. Served to commercial and marketing teams for customer value analysis."
+    columns:
+      - name: customer_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: "Customer full name"
+        tests:
+          - not_null
+      - name: total_orders
+        description: "Total number of orders placed by the customer"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: total_revenue
+        description: "Sum of all order amounts in USD"
+        tests:
+          - not_null
+          - assert_positive_value
+      - name: avg_order_value
+        description: "Average order value in USD"
+        tests:
+          - assert_positive_value
+      - name: first_order_date
+        description: "Date of customer's first order"
+      - name: most_recent_order_date
+        description: "Date of customer's most recent order"
+      - name: completed_orders
+        description: "Count of completed orders"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: returned_orders
+        description: "Count of returned orders"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
